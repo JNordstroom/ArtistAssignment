@@ -2,12 +2,12 @@
 import "./sass/main.scss";
 
 // Import some Bootstrap components
-import MainMenu from './MainMenu';
+
 import { Container, Row, Col, Button } from 'react-bootstrap';
 
 export default function App() {
   return <>
-    <MainMenu />
+    
     <Container className="mt-5">
       <Row>
         <Col>
