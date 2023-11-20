@@ -7,8 +7,8 @@ namespace webApi.Data
     public ArtistAlbumSongContext(DbContextOptions<ArtistAlbumSongContext> Options)
         : base(Options){}
 
-        public DbSet<artister> Artister {get; set;}
-        public DbSet<album> Albums {get; set;}
-        public DbSet<låtar> Låtars {get; set;}
+        public DbSet<Artister> Artister {get; set;}
+        public DbSet<Album> Albums {get; set;}
+        public DbSet<Låtar> Låtar {get; set;}
 }
 }
