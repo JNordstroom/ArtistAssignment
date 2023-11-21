@@ -21,7 +21,7 @@ namespace webApi.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAllAlbums()
         {
-             var result = await _context.album
+             var result = await _context.Album
                 .Select(a => new{
                     Id = a.Id,
                     Namn = a.Namn,
@@ -34,7 +34,7 @@ namespace webApi.Controllers
         [HttpGet("{artisterId}")] 
         public async Task<IActionResult> GetAllAlbumsFromOneArtist(int artisterId)
         {
-            var result = await _context.artister
+            var result = await _context.Artister
                 .Where(a => a.Id == artisterId)
                 .Select(a => new
                 {

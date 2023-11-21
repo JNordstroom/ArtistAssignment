@@ -23,7 +23,7 @@ namespace webApi.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAllArtists()
         {
-            var result = await _context.artister
+            var result = await _context.Artister
                 .Select(a => new{
                     Id = a.Id,
                     Namn = a.Namn,
