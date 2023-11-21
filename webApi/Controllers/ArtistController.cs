@@ -8,7 +8,7 @@ using webApi.Data;
 
 namespace webApi.Controllers
 {
-    [Route("api/artists")]
+    [Route("api/artister")]
     [ApiController]
 
     public class ArtistController : ControllerBase
@@ -17,7 +17,7 @@ namespace webApi.Controllers
 
         public ArtistController(ArtistAlbumSongContext context)
         {
-        _context = context;
+            _context = context;
         }
 
         [HttpGet]
