@@ -8,5 +8,6 @@ namespace webApi.Entities
         public int ArtisterId {get; set;}
         
         public Artister Artister { get; set; }
+        public ICollection<Låtar> Låtar {get; set;}
     }
 }

@@ -31,5 +31,42 @@ namespace webApi.Controllers
                 .ToListAsync();
             return Ok(result);
         }
+
+        [HttpGet("{albumId}/{songId}")]
+        public async Task<IActionResult> GetSongsById(int albumId, int songId)
+        {
+            var result = await _context.Album
+                .Where(a => a.Id == albumId)
+                .Select(a => new{
+                    Namn = a.Namn,
+                    Låtar = a.Låtar
+                    .Where(l => l.Id == songId)
+                    .Select(l => new{
+                        Namn = l.Namn,
+                        Placering = l.Placering
+                    })
+                    .ToList()
+                })
+                .ToListAsync();
+            return Ok(result);
+        }
+
+
+        [HttpGet("{albumId}")]
+        public async Task<IActionResult> GetAllSongFromSpecificAlbum(int albumId)
+        {
+            var result = await _context.Album
+                .Where(a => a.Id == albumId)
+                .Select(a => new {
+                    Namn = a.Namn,
+                    Låtar = a.Låtar.Select(l => new{
+                        Namn = l.Namn,
+                        Placering = l.Placering
+                    })
+                    .ToList()
+                })
+                .FirstOrDefaultAsync();
+            return Ok(result);
+        }
     }
 }
