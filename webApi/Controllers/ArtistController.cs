@@ -32,5 +32,19 @@ namespace webApi.Controllers
                 .ToListAsync();
             return Ok(result);
         }
+
+        [HttpGet("{artistId}")]
+        public async Task<IActionResult> GetArtistById(int artistId)
+        {
+            var result = await _context.Artister
+                .Where(a => a.Id == artistId)
+                .Select(a => new{
+                    Id = a.Id,
+                    Namn = a.Namn,
+                    Beskrivning = a.Beskrivning
+                })
+                .ToListAsync();
+            return Ok(result);
+        }
     }
 }

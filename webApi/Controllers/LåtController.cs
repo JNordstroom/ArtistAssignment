@@ -31,9 +31,21 @@ namespace webApi.Controllers
                 .ToListAsync();
             return Ok(result);
         }
+        [HttpGet("{songId}")]
+        public async Task<IActionResult> GetSingelSongById(int songId)
+        {
+            var result = await _context.Låtar
+                .Where(l => l.Id == songId)
+                .Select(l => new {
+                    Namn = l.Namn,
+                    Placering = l.Placering
+                })
+                .ToListAsync();
+            return Ok(result);
+        }
 
         [HttpGet("{albumId}/{songId}")]
-        public async Task<IActionResult> GetSongsById(int albumId, int songId)
+        public async Task<IActionResult> GetSongFromSpecificAlbumById(int albumId, int songId)
         {
             var result = await _context.Album
                 .Where(a => a.Id == albumId)
@@ -50,9 +62,10 @@ namespace webApi.Controllers
                 .ToListAsync();
             return Ok(result);
         }
+        
 
 
-        [HttpGet("{albumId}")]
+        [HttpGet("alla/{albumId}")]
         public async Task<IActionResult> GetAllSongFromSpecificAlbum(int albumId)
         {
             var result = await _context.Album
