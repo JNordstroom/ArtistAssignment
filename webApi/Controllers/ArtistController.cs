@@ -46,5 +46,19 @@ namespace webApi.Controllers
                 .ToListAsync();
             return Ok(result);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateNewArtist(Artister newArtist) 
+        {
+            if(newArtist == null)
+            {
+                return BadRequest("Felaktig inmatning");
+            }
+
+            _context.Artister.Add(newArtist);
+            await _context.SaveChangesAsync();
+
+            return Ok("Artist tillagd!");
+        }
     }
 }
