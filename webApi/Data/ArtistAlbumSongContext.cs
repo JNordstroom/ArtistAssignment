@@ -9,7 +9,7 @@ namespace webApi.Data
         : base(Options){}
 
         public DbSet<Artister> Artister {get; set;}
-        public DbSet<Album> Albums {get; set;}
+        public DbSet<Album> Album {get; set;}
         public DbSet<Låtar> Låtar {get; set;}
 }
 }

@@ -28,14 +28,14 @@ namespace webApi.Migrations
                     b.Property<string>("Namn")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("Utgivninsår")
+                    b.Property<int>("Publicerad")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
                     b.HasIndex("Artisterid");
 
-                    b.ToTable("Albums");
+                    b.ToTable("album");
                 });
 
             modelBuilder.Entity("webApi.Entities.Artister", b =>
@@ -52,7 +52,7 @@ namespace webApi.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Artister");
+                    b.ToTable("artister");
                 });
 
             modelBuilder.Entity("webApi.Entities.Låtar", b =>
@@ -74,13 +74,13 @@ namespace webApi.Migrations
 
                     b.HasIndex("Albumid");
 
-                    b.ToTable("Låtar");
+                    b.ToTable("låtar");
                 });
 
             modelBuilder.Entity("webApi.Entities.Album", b =>
                 {
                     b.HasOne("webApi.Entities.Artister", "Artist")
-                        .WithMany()
+                        .WithMany("Album")
                         .HasForeignKey("Artisterid")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -96,6 +96,11 @@ namespace webApi.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.Navigation("Album");
+                });
+
+            modelBuilder.Entity("webApi.Entities.Artister", b =>
+                {
                     b.Navigation("Album");
                 });
 #pragma warning restore 612, 618

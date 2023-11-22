@@ -11,7 +11,7 @@ namespace webApi.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Artister",
+                name: "artister",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
@@ -21,32 +21,32 @@ namespace webApi.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Artister", x => x.Id);
+                    table.PrimaryKey("PK_artister", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Albums",
+                name: "album",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Namn = table.Column<string>(type: "TEXT", nullable: true),
-                    Utgivninsår = table.Column<int>(type: "INTEGER", nullable: false),
+                    Publicerad = table.Column<int>(type: "INTEGER", nullable: false),
                     Artisterid = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Albums", x => x.Id);
+                    table.PrimaryKey("PK_album", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Albums_Artister_Artisterid",
+                        name: "FK_album_artister_Artisterid",
                         column: x => x.Artisterid,
-                        principalTable: "Artister",
+                        principalTable: "artister",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Låtar",
+                name: "låtar",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
@@ -57,23 +57,23 @@ namespace webApi.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Låtar", x => x.Id);
+                    table.PrimaryKey("PK_låtar", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Låtar_Albums_Albumid",
+                        name: "FK_låtar_album_Albumid",
                         column: x => x.Albumid,
-                        principalTable: "Albums",
+                        principalTable: "album",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Albums_Artisterid",
-                table: "Albums",
+                name: "IX_album_Artisterid",
+                table: "album",
                 column: "Artisterid");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Låtar_Albumid",
-                table: "Låtar",
+                name: "IX_låtar_Albumid",
+                table: "låtar",
                 column: "Albumid");
         }
 
@@ -81,13 +81,13 @@ namespace webApi.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Låtar");
+                name: "låtar");
 
             migrationBuilder.DropTable(
-                name: "Albums");
+                name: "album");
 
             migrationBuilder.DropTable(
-                name: "Artister");
+                name: "artister");
         }
     }
 }
