@@ -65,7 +65,7 @@ namespace webApi.Controllers
         
 
 
-        [HttpGet("alla/{albumId}")]
+        [HttpGet("{albumId}/alla")]
         public async Task<IActionResult> GetAllSongFromSpecificAlbum(int albumId)
         {
             var result = await _context.Album
@@ -80,6 +80,20 @@ namespace webApi.Controllers
                 })
                 .FirstOrDefaultAsync();
             return Ok(result);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateNewSong(Låtar newSong)
+        {
+            if(newSong == null || newSong.AlbumId <= 0)
+            {
+                return BadRequest("Felaktig inmatning!");
+            }
+
+            _context.Låtar.Add(newSong);
+            await _context.SaveChangesAsync();
+
+            return Ok("Låt tillagd!");
         }
     }
 }

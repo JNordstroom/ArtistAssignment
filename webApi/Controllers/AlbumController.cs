@@ -70,5 +70,20 @@ namespace webApi.Controllers
 
             return Ok(result);
         }
+
+
+        [HttpPost]
+        public async Task<IActionResult> CreateNewAlbum (Album newAlbum)
+        {
+            if(newAlbum == null || newAlbum.ArtisterId <= 0)
+            {
+                return BadRequest("Felaktig inmatning!");
+            }
+
+            _context.Album.Add(newAlbum);
+            await _context.SaveChangesAsync();
+
+            return Ok("Album tillagd!");
+        }
     }
 }
