@@ -85,5 +85,28 @@ namespace webApi.Controllers
 
             return Ok("Album tillagd!");
         }
+        
+        [HttpPut("{albumId}")]
+        public async Task<IActionResult> UpdateAlbum (int albumId, Album updateAlbum)
+        {
+            if(updateAlbum == null || albumId <= 0)
+            {
+                return BadRequest("Felaktig inmatning!");
+            }
+
+            var exsistingAlbum = await _context.Album.FindAsync(albumId);
+
+            if(exsistingAlbum == null)
+            {
+                return BadRequest("Albumet finns inte!");
+            }
+
+            exsistingAlbum.Namn = updateAlbum.Namn;
+            exsistingAlbum.Publicerad = updateAlbum.Publicerad;
+
+            await _context.SaveChangesAsync();
+
+            return Ok("Albumet är uppdaterad!");
+        }
     }
 }

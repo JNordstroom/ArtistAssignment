@@ -95,5 +95,28 @@ namespace webApi.Controllers
 
             return Ok("Låt tillagd!");
         }
+
+        [HttpPut("{songId}")]
+        public async Task<IActionResult> UpdateAlbum (int songId, Låtar updateSong)
+        {
+            if(updateSong == null || songId <= 0)
+            {
+                return BadRequest("Felaktig inmatning!");
+            }
+
+            var exsistingSongs = await _context.Låtar.FindAsync(songId);
+
+            if(exsistingSongs == null)
+            {
+                return BadRequest("Albumet finns inte!");
+            }
+
+            exsistingSongs.Namn = updateSong.Namn;
+            exsistingSongs.Placering = updateSong.Placering;
+
+            await _context.SaveChangesAsync();
+
+            return Ok("Albumet är uppdaterad!");
+        }
     }
 }
