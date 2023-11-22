@@ -31,7 +31,21 @@ namespace webApi.Controllers
             return Ok(result);
         }
 
-        [HttpGet("{artisterId}")] 
+        [HttpGet("{albumId}")]
+        public async Task<IActionResult> GetAlbumById(int albumId)
+        {
+             var result = await _context.Album
+                .Where(a => a.Id == albumId)
+                .Select(a => new{
+                    Id = a.Id,
+                    Namn = a.Namn,
+                    Publicerad = a.Publicerad
+                })
+                .ToListAsync();
+            return Ok(result);
+        }
+
+        [HttpGet("artist/{artisterId}")] 
         public async Task<IActionResult> GetAllAlbumsFromOneArtist(int artisterId)
         {
             var result = await _context.Artister
