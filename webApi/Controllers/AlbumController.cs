@@ -108,5 +108,21 @@ namespace webApi.Controllers
 
             return Ok("Albumet är uppdaterad!");
         }
+
+         [HttpDelete("{albumId}")]
+        public async Task<IActionResult> DeleteAlbum(int albumId)
+        {
+            var deleteAlbum = await _context.Album.FindAsync(albumId);
+
+            if (deleteAlbum == null)
+            {
+                return NotFound("Albumet finns inte!");
+            }
+
+            _context.Album.Remove(deleteAlbum);
+            await _context.SaveChangesAsync();
+
+            return Ok("Albumet och dess låtar är borttagna!");
+        }
     }
 }
