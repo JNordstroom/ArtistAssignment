@@ -16,11 +16,13 @@ namespace webApi.Data
             modelBuilder.Entity<Artister>()
                 .HasMany(a => a.Album)
                 .WithOne(a => a.Artister)
+                .HasForeignKey(a => a.ArtisterId)
                 .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<Album>()
                 .HasMany(a => a.Låtar)
                 .WithOne(l => l.Album)
+                .HasForeignKey(l => l.AlbumId)
                 .OnDelete(DeleteBehavior.Cascade);
         }
     }
