@@ -110,7 +110,7 @@ namespace webApi.Controllers
 
             if(exsistingSongs == null)
             {
-                return BadRequest("Albumet finns inte!");
+                return BadRequest("Låten finns inte!");
             }
 
             exsistingSongs.Namn = updateSong.Namn;
@@ -118,7 +118,23 @@ namespace webApi.Controllers
 
             await _context.SaveChangesAsync();
 
-            return Ok("Albumet är uppdaterad!");
+            return Ok("Låten är uppdaterad!");
+        }
+
+        [HttpDelete("{songId}")]
+        public async Task<IActionResult> DeleteSong(int songId)
+        {
+            var deleteSong = await _context.Låtar.FindAsync(songId);
+
+            if (deleteSong == null)
+            {
+                return NotFound("Låten finns inte!");
+            }
+
+            _context.Låtar.Remove(deleteSong);
+            await _context.SaveChangesAsync();
+
+            return Ok("Låten är borttagna!");
         }
     }
 }
