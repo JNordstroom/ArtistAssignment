@@ -1,12 +1,13 @@
 import "./sass/main.scss";
 import { Outlet } from 'react-router-dom';
 import { useState } from 'react';
+import { get } from './utilsAndHooks/ApiService'
 
 
 export default function App() {
 
   const [artist, setArtist] = useState([]);
-  get('/api/artister', setArtist);
+    get('/api/artister', setArtist);
 
 
   return <>

@@ -4,8 +4,8 @@ import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import App from './App';
-import ArtistView from './ArtistView.jsx';
-import AlbumView from './AlbumView.jsx';
+import ArtistView from './views/ArtistView.jsx';
+import AlbumView from './views/AlbumView.jsx';
 
 
 export const pages = [
