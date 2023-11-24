@@ -8,7 +8,7 @@ using webApi.Data;
 
 namespace webApi.Controllers
 {
-    [Route("api/artister")]
+    [Route("api/[controller]")]
     [ApiController]
 
     public class ArtistController : ControllerBase
@@ -25,7 +25,6 @@ namespace webApi.Controllers
         {
             var result = await _context.Artister
                 .Select(a => new{
-                    Id = a.Id,
                     Namn = a.Namn,
                     Beskrivning = a.Beskrivning
                 })
