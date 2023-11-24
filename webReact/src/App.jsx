@@ -1,20 +1,21 @@
-// Only import your sass in App (not every component)
 import "./sass/main.scss";
+import { Outlet } from 'react-router-dom';
+import { useState } from 'react';
 
-// Import some Bootstrap components
-
-import { Container, Row, Col, Button } from 'react-bootstrap';
 
 export default function App() {
+
+  const [artist, setArtist] = useState([]);
+  get('/api/artister', setArtist);
+
+
   return <>
-    
-    <Container className="mt-5">
-      <Row>
-        <Col>
-          <h1>Start</h1>
-          
-        </Col>
-      </Row>
-    </Container>
-  </>;
+    <header>
+    </header>
+    <main className="container mt-5">
+      <Outlet context={{ artist }} />
+    </main>
+    <footer>  
+    </footer>
+  </>
 }
