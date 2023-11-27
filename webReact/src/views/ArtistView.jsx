@@ -10,7 +10,6 @@ export default function ArtistView() {
     (async () => {
       try {
         const artistData = await get('Artist/alla');
-        console.log(artistData);
         setArtists(artistData);
       } catch (error) {
         console.error('Error fetching artist data:', error);

@@ -10,7 +10,7 @@ import AlbumView from './views/AlbumView.jsx';
 
 export const pages = [
   { path: '/', label: 'Artist', element: <ArtistView /> },
-  { path: '/Album', label: 'About the artist albums', element: <AlbumView /> }
+  { path: '/Album/:id', label: 'About the artist albums', element: <AlbumView /> }
 ];
 
 const router = createBrowserRouter([
