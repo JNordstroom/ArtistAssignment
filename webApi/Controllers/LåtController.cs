@@ -75,6 +75,7 @@ namespace webApi.Controllers
                 .Select(a => new {
                     Namn = a.Namn,
                     Låtar = a.Låtar.Select(l => new{
+                        Id = l.Id,
                         Namn = l.Namn,
                         Placering = l.Placering
                     })

@@ -7,7 +7,7 @@ import { get } from './utilsAndHooks/ApiService'
 export default function App() {
 
   const [globals, setGlobals] = useState({
-    movies: []
+    artist: []
   });
 
     useEffect(() => {
