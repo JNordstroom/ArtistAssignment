@@ -24,3 +24,6 @@ dist-ssr
 *.sw?
 
 desktop.ini
+
+bin/
+obj/
