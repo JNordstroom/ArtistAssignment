@@ -7,7 +7,7 @@ using webApi.Data;
 
 namespace webApi.Controllers
 {
-    [Route("api/album")]
+    [Route("api/[controller]")]
     [ApiController]
     public class AlbumController : ControllerBase
     {
@@ -45,7 +45,7 @@ namespace webApi.Controllers
             return Ok(result);
         }
 
-        [HttpGet("artist/{artisterId}")] 
+        [HttpGet("album/artist/{artisterId}")] 
         public async Task<IActionResult> GetAllAlbumsFromOneArtist(int artisterId)
         {
             var result = await _context.Artister
