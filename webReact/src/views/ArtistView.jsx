@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import { get } from '../utilsAndHooks/ApiService.jsx'; // Make sure to import your get function
+import { get } from '../utilsAndHooks/ApiService.jsx'; 
+import { Container, Row, Col, Card } from 'react-bootstrap';
 
 export default function ArtistView() {
   const [artists, setArtists] = useState([]);
@@ -17,16 +18,21 @@ export default function ArtistView() {
   }, []);
 
   return (
-    <div>
-      <h1>Artists</h1>
-      <ul>
+    <Container className="mt-4">
+      <h1 className="text-center mb-4">Artists</h1>
+      <Row xs={1} md={2} lg={4} className="g-4 justify-content-center">
         {artists.map((artist) => (
-          <li key={artist.id}>
-            <strong>{artist.namn}</strong>: {artist.beskrivning}
-          </li>
-          
+          <Col key={artist.id} className="d-flex">
+            <Card style={{ width: '18rem' }} className="mx-auto">
+              <Card.Body>
+                <Card.Title>{artist.namn}</Card.Title>
+                <Card.Subtitle className="mb-2 text-muted">Beskrivning</Card.Subtitle>
+                <Card.Subtitle className="mb-2 text-muted" style={{ fontSize: '0.8rem' }}>{artist.beskrivning}</Card.Subtitle>
+              </Card.Body>
+            </Card>
+          </Col>
         ))}
-      </ul>
-    </div>
+      </Row>
+    </Container>
   );
 }
