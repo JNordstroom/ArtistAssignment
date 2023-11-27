@@ -8,7 +8,7 @@ using webApi.Data;
 
 namespace webApi.Controllers
 {
-    [Route("api/låtar")]
+    [Route("api/[controller]")]
     [ApiController]
 
     public class LåtController : ControllerBase
