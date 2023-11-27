@@ -13,12 +13,10 @@ export default function AlbumView() {
       try {
         // Fetch artist data
         const artistData = await get(`Album/artist/${id}`);
-        console.log('Artist API Response:', artistData);
         setArtist(artistData);
 
         // Fetch albums for the artist
         const albumsData = await get(`Album/artist/${id}`);
-        console.log('Albums API Response:', albumsData);
         setAlbums(albumsData.album);
       } catch (error) {
         console.error('Error fetching data:', error);
