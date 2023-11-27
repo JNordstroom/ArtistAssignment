@@ -20,7 +20,7 @@ export default function ArtistView() {
 
   return (
     <Container className="mt-4">
-      <h1 className="text-center mb-4">Artists</h1>
+      <h1 className="text-center mb-4">Artister</h1>
       <Row xs={1} md={2} lg={4} className="g-4 justify-content-center">
         {artists.map((artist) => (
           <Col key={artist.id} className="d-flex">
