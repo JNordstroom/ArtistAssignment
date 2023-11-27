@@ -45,17 +45,19 @@ namespace webApi.Controllers
             return Ok(result);
         }
 
-        [HttpGet("album/artist/{artisterId}")] 
+        [HttpGet("artist/{artisterId}")] 
         public async Task<IActionResult> GetAllAlbumsFromOneArtist(int artisterId)
         {
             var result = await _context.Artister
                 .Where(a => a.Id == artisterId)
                 .Select(a => new
                 {
+                    
                     ArtistNamn = a.Namn,
                     ArtistBeskrivning = a.Beskrivning,
                     Album = a.Album.Select(b => new
                     {
+                        Id = b.Id,
                         Namn = b.Namn,
                         Publicerad = b.Publicerad
                     })
