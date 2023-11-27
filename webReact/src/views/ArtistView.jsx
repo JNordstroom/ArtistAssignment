@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { get } from '../utilsAndHooks/ApiService.jsx'; 
 import { Container, Row, Col, Card } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 export default function ArtistView() {
   const [artists, setArtists] = useState([]);
@@ -23,13 +24,15 @@ export default function ArtistView() {
       <Row xs={1} md={2} lg={4} className="g-4 justify-content-center">
         {artists.map((artist) => (
           <Col key={artist.id} className="d-flex">
-            <Card style={{ width: '18rem' }} className="mx-auto">
-              <Card.Body>
-                <Card.Title>{artist.namn}</Card.Title>
-                <Card.Subtitle className="mb-2 text-muted">Beskrivning</Card.Subtitle>
-                <Card.Subtitle className="mb-2 text-muted" style={{ fontSize: '0.8rem' }}>{artist.beskrivning}</Card.Subtitle>
-              </Card.Body>
-            </Card>
+            <Link to={`/Album/${artist.id}`} style={{ textDecoration: 'none', width: '100%' }}>
+              <Card style={{ width: '18rem' }} className="mx-auto">
+                <Card.Body className="d-flex flex-column align-items-center justify-content-center">
+                  <Card.Title>{artist.namn}</Card.Title>
+                  <Card.Subtitle className="mb-2 text-muted">Beskrivning</Card.Subtitle>
+                  <Card.Subtitle className="mb-2 text-muted" style={{ fontSize: '0.8rem' }}>{artist.beskrivning}</Card.Subtitle>
+                </Card.Body>
+              </Card>
+            </Link>
           </Col>
         ))}
       </Row>
