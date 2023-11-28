@@ -85,18 +85,35 @@ namespace webApi.Controllers
             return Ok(result);
         }
 
-        [HttpPost]
+        [HttpPost("addnewsong")]
         public async Task<IActionResult> CreateNewSong(Låtar newSong)
         {
-            if(newSong == null || newSong.AlbumId <= 0)
+            try{
+                if(newSong == null || newSong.AlbumId <= 0)
             {
                 return BadRequest("Felaktig inmatning!");
             }
+            if (string.IsNullOrWhiteSpace(newSong.Namn))
+            {
+                return BadRequest("Låtnamnet kan inte vara tomt!.");
+            }
+            var existingSong = await _context.Låtar
+                .FirstOrDefaultAsync(a => a.Namn.ToLower() == newSong.Namn.ToLower() && a.AlbumId == newSong.AlbumId);
+
+            if (existingSong != null)
+            {
+                return Conflict("En låt med det namnet finns redan!");
+            }
+
 
             _context.Låtar.Add(newSong);
             await _context.SaveChangesAsync();
 
             return Ok("Låt tillagd!");
+            }
+            catch{
+                return StatusCode(500, "Internal server error");
+            }
         }
 
         [HttpPut("{songId}")]
