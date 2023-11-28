@@ -47,18 +47,33 @@ namespace webApi.Controllers
             return Ok(result);
         }
 
-        [HttpPost]
-        public async Task<IActionResult> CreateNewArtist(Artister newArtist) 
+        [HttpPost("createnewartist")]
+        public async Task<IActionResult> CreateNewArtist([FromBody] Artister newArtist)
         {
-            if(newArtist == null)
+            if (string.IsNullOrWhiteSpace(newArtist.Namn))
             {
-                return BadRequest("Felaktig inmatning");
+                return BadRequest(new { error = "Felaktig inmatning!" });
             }
 
-            _context.Artister.Add(newArtist);
-            await _context.SaveChangesAsync();
+            try
+            {
+                // Check if an artist with the same name already exists
+                var existingArtist = await _context.Artister
+                    .FirstOrDefaultAsync(a => a.Namn.ToLower() == newArtist.Namn.ToLower());
 
-            return Ok("Artist tillagd!");
+                if (existingArtist != null)
+                {
+                    return Conflict("Där finns redan en artist med det namnet!");
+                }
+
+                _context.Artister.Add(newArtist);
+                await _context.SaveChangesAsync();
+                return Ok("Artist tillagd!");
+            }
+            catch 
+            {
+                return StatusCode(500, "Internal server error");
+            }
         }
 
         [HttpPut("{artistId}")]
