@@ -20,7 +20,8 @@ export default function ArtistView() {
   return (
     <Container className="mt-4">
       <h1 className="text-center mb-4">Artister</h1>
-      <Row xs={1} md={2} lg={4} className="g-4 justify-content-center">
+
+      <Row xs={1} md={2} lg={4} className="g-4 justify-content-start">
         {artists.map((artist) => (
           <Col key={artist.id} className="d-flex">
             <Link to={`/Album/${artist.id}`} style={{ textDecoration: 'none', width: '100%' }}>
@@ -34,6 +35,18 @@ export default function ArtistView() {
             </Link>
           </Col>
         ))}
+        
+        
+        <Col key="new-artist" className="d-flex">
+          <Link to="/CreateNewArtistView" style={{ textDecoration: 'none', width: '100%' }}>
+            <Card style={{ width: '18rem', height: '6.7rem' }} className="mx-auto">
+              <Card.Body className="d-flex flex-column align-items-center justify-content-center">
+                <Card.Title>Lägg till ny artist</Card.Title>
+                
+              </Card.Body>
+            </Card>
+          </Link>
+        </Col>
       </Row>
     </Container>
   );
