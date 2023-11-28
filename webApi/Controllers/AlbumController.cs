@@ -74,18 +74,41 @@ namespace webApi.Controllers
         }
 
 
-        [HttpPost]
-        public async Task<IActionResult> CreateNewAlbum (Album newAlbum)
+       [HttpPost("createnewalbum")]
+        public async Task<IActionResult> CreateNewAlbum(Album newAlbum)
         {
-            if(newAlbum == null || newAlbum.ArtisterId <= 0)
+            try
             {
-                return BadRequest("Felaktig inmatning!");
+                //check to make sure there is an album on that id
+                if (newAlbum == null || newAlbum.ArtisterId <= 0)
+                {
+                    return BadRequest("Felaktig inmatning!");
+                }
+
+                // Check for whitespace in album name
+                if (string.IsNullOrWhiteSpace(newAlbum.Namn))
+                {
+                    return BadRequest("Album name cannot be empty or contain only whitespace.");
+                }
+
+                // Check if the album name already exsist
+                var existingAlbum = await _context.Album
+                    .FirstOrDefaultAsync(a => a.Namn.ToLower() == newAlbum.Namn.ToLower() && a.ArtisterId == newAlbum.ArtisterId);
+
+                if (existingAlbum != null)
+                {
+                    return Conflict("Ett album med det namnet finns redan!");
+                }
+
+                _context.Album.Add(newAlbum);
+                await _context.SaveChangesAsync();
+
+                return Ok("Album tillagd!");
             }
-
-            _context.Album.Add(newAlbum);
-            await _context.SaveChangesAsync();
-
-            return Ok("Album tillagd!");
+            catch
+            {
+                return StatusCode(500, "Internal server error");
+            }
         }
         
         [HttpPut("{albumId}")]

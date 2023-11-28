@@ -48,15 +48,15 @@ namespace webApi.Controllers
         }
 
         [HttpPost("createnewartist")]
-        public async Task<IActionResult> CreateNewArtist([FromBody] Artister newArtist)
+        public async Task<IActionResult> CreateNewArtist(Artister newArtist)
         {
-            if (string.IsNullOrWhiteSpace(newArtist.Namn))
-            {
-                return BadRequest(new { error = "Felaktig inmatning!" });
-            }
-
             try
             {
+                if (string.IsNullOrWhiteSpace(newArtist.Namn))
+                {
+                    return BadRequest("Felaktig inmatning!");
+                }
+
                 // Check if an artist with the same name already exists
                 var existingArtist = await _context.Artister
                     .FirstOrDefaultAsync(a => a.Namn.ToLower() == newArtist.Namn.ToLower());

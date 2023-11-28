@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 const CreateNewArtistView = () => {
   const [formData, setFormData] = useState({ artistName: '', artistDescription: '' });
   const [error, setError] = useState(null);
-  const navigate = useNavigate();  // Use useNavigate for navigation
+  const navigate = useNavigate();  
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -68,7 +68,7 @@ const CreateNewArtistView = () => {
         <button type="submit" className="btn btn-primary">Lägg till</button>
       </form>
 
-      {/* Show error message if there's an error */}
+      
       {error && <div className="alert alert-danger">{error}</div>}
     </div>
   );
