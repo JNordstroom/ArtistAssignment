@@ -15,7 +15,7 @@ export const pages = [
   { path: '/Album/:id', label: 'About the artist albums', element: <AlbumView /> },
   { path: '/Songs/:id', label: 'About the albums songs', element: <SongView /> },
   { path: '/CreateNewArtistView', label: 'Create new artist', element: <CreateNewArtistView /> },
-  { path: '/CreateNewAlbumView', label: 'Create new album', element: <CreateNewAlbumView /> }
+  { path: '/CreateNewAlbumView/:id', label: 'Create new album', element: <CreateNewAlbumView /> }
 ];
 
 const router = createBrowserRouter([
