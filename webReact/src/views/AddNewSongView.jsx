@@ -5,7 +5,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 const CreateNewAlbumView = () => {
   const [formData, setFormData] = useState({ Namn: '', Placering: null, AlbumId: null});
   const navigate = useNavigate();
-  const { id: AlbumId } = useParams(); 
+  const { id: albumId } = useParams(); 
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -18,7 +18,7 @@ const CreateNewAlbumView = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
   
-    console.log(AlbumId);
+    console.log(albumId);
     console.log(formData);
     try {
         
@@ -27,7 +27,7 @@ const CreateNewAlbumView = () => {
         Namn: formData.Namn,
         // Parsing the user input
         Placering: parseInt(formData.Placering, 10),  
-        AlbumId: AlbumId,
+        AlbumId: parseInt(albumId, 10),
       });
   
       if (response.error) {
@@ -36,7 +36,7 @@ const CreateNewAlbumView = () => {
         alert('Låten tillagd!');
         
         // route back to that the songpage
-        navigate(`/Songs/${AlbumId}`);  
+        navigate(`/Songs/${albumId}`);  
       }
     } catch (error) {
       console.error('Fel vid försök att skapa låt:', error);
@@ -64,14 +64,14 @@ const CreateNewAlbumView = () => {
 
         
         <div className="mb-3">
-          <label htmlFor="Publicerad" className="form-label">
+          <label htmlFor="Placering" className="form-label">
             Placering
           </label>
           <textarea
             className="form-control"
-            id="Publicerad"
-            name="Publicerad"
-            value={formData.Publicerad}
+            id="Placering"
+            name="Placering"
+            value={formData.Placering}
             onChange={handleChange}
             required
           ></textarea>
