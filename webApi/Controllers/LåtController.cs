@@ -85,7 +85,7 @@ namespace webApi.Controllers
             return Ok(result);
         }
 
-        [HttpPost]
+        [HttpPost("addnewsong")]
         public async Task<IActionResult> CreateNewSong(Låtar newSong)
         {
             if(newSong == null || newSong.AlbumId <= 0)

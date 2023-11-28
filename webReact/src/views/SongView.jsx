@@ -1,5 +1,5 @@
 import  { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { get } from '../utilsAndHooks/ApiService.jsx';
 import { Container, Row, Col, Card } from 'react-bootstrap';
 
@@ -39,6 +39,15 @@ export default function SongView() {
               </Card>
             </Col>
           ))}
+          <Col key="new-song" className="d-flex">
+          <Link to={`/AddNewSongView/${id}`} style={{ textDecoration: 'none', width: '100%' }}>
+            <Card style={{ width: '18rem', height: '6.7rem' }} className="mx-auto">
+              <Card.Body className="d-flex flex-column align-items-center justify-content-center">
+                <Card.Title>Lägg till ny låt</Card.Title>
+              </Card.Body>
+            </Card>
+          </Link>
+        </Col>
         </Row>
       </Container>
     );

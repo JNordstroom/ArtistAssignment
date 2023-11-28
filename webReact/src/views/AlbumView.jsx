@@ -51,7 +51,7 @@ export default function AlbumView() {
           </Col>
         ))}
 
-        <Col key="new-artist" className="d-flex">
+        <Col key="new-album" className="d-flex">
           <Link to={`/CreateNewAlbumView/${id}`} style={{ textDecoration: 'none', width: '100%' }}>
             <Card style={{ width: '18rem', height: '6.7rem' }} className="mx-auto">
               <Card.Body className="d-flex flex-column align-items-center justify-content-center">
