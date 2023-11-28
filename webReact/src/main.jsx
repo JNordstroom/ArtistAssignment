@@ -9,13 +9,15 @@ import AlbumView from './views/AlbumView.jsx';
 import SongView from './views/SongView.jsx';
 import CreateNewArtistView from './views/CreateNewArtistView.jsx';
 import CreateNewAlbumView from './views/CreateNewAlbumView.jsx';
+import AddNewSongView from './views/AddNewSongView.jsx';
 
 export const pages = [
   { path: '/', label: 'Artist', element: <ArtistView /> },
   { path: '/Album/:id', label: 'About the artist albums', element: <AlbumView /> },
   { path: '/Songs/:id', label: 'About the albums songs', element: <SongView /> },
   { path: '/CreateNewArtistView', label: 'Create new artist', element: <CreateNewArtistView /> },
-  { path: '/CreateNewAlbumView/:id', label: 'Create new album', element: <CreateNewAlbumView /> }
+  { path: '/CreateNewAlbumView/:id', label: 'Create new album', element: <CreateNewAlbumView /> },
+  { path: '/AddNewSongView/:id', label: 'Create new album', element: <AddNewSongView />}
 ];
 
 const router = createBrowserRouter([
