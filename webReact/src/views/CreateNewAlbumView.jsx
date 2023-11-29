@@ -43,6 +43,10 @@ const CreateNewAlbumView = () => {
     }
   };
 
+  const goBack = () => {
+    navigate(-1);
+  };
+
   return (
     <div>
       <h1>Lägg till nytt album</h1>
@@ -81,6 +85,7 @@ const CreateNewAlbumView = () => {
         <button type="submit" className="btn btn-primary">
           Lätt till album
         </button>
+        <button onClick={goBack} className='mb-1 btn '>Tillbaka</button>
       </form>
     </div>
   );

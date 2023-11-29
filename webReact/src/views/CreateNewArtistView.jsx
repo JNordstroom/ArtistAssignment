@@ -38,6 +38,10 @@ const CreateNewArtistView = () => {
     }
   };
 
+  const goBack = () => {
+    navigate(-1);
+  };
+
   return (
     <div>
       <h1>Lägg till ny artist</h1>
@@ -66,6 +70,7 @@ const CreateNewArtistView = () => {
           ></textarea>
         </div>
         <button type="submit" className="btn btn-primary">Lägg till</button>
+        <button onClick={goBack} className='mb-1 btn '>Tillbaka</button>
       </form>
 
       

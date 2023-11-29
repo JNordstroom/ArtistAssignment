@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { get } from '../utilsAndHooks/ApiService.jsx';
 import { Container, Row, Col, Card } from 'react-bootstrap';
 
@@ -7,6 +7,7 @@ export default function AlbumView() {
   const { id } = useParams();
   const [artist, setArtist] = useState({});
   const [albums, setAlbums] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -27,12 +28,21 @@ export default function AlbumView() {
     fetchData();
   }, [id]);
 
+  const goBack = () => {
+    navigate(-1);
+  };
+
   return (
     <Container className="mt-4">
-      <h1 className="text-center mb-4">Albums</h1>
-      <h2 className="text-center mb-4">{artist.artistNamn}</h2>
+
 
       <Row className="g-4 justify-content-center">
+
+      <h1 className="text-center mb-3">Albums</h1>
+      <h2 className="text-center mb-3">{artist.artistNamn}</h2>
+      <button onClick={goBack} className='mb-1 btn '>Tillbaka</button>
+      <Row xs={1} md={2} lg={4} className="g-4 justify-content-center">
+
         {albums.map((album) => (
           <Col key={album.id} className="d-flex">
             <Link to={`/Songs/${album.id}`} style={{ textDecoration: 'none', width: '100%' }}>
