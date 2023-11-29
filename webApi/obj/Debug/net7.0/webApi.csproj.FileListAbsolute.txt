@@ -66,3 +66,9 @@ C:\Users\jimmie\Documents\artist-album-låtar\webApi\obj\Debug\net7.0\refint\web
 C:\Users\jimmie\Documents\artist-album-låtar\webApi\obj\Debug\net7.0\webApi.pdb
 C:\Users\jimmie\Documents\artist-album-låtar\webApi\obj\Debug\net7.0\webApi.genruntimeconfig.cache
 C:\Users\jimmie\Documents\artist-album-låtar\webApi\obj\Debug\net7.0\ref\webApi.dll
+C:\Users\jimmie\Documents\artist-album-låtar\webApi\bin\Debug\net7.0\Microsoft.Extensions.Caching.Abstractions.dll
+C:\Users\jimmie\Documents\artist-album-låtar\webApi\bin\Debug\net7.0\Microsoft.Extensions.Caching.Memory.dll
+C:\Users\jimmie\Documents\artist-album-låtar\webApi\bin\Debug\net7.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\jimmie\Documents\artist-album-låtar\webApi\bin\Debug\net7.0\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\jimmie\Documents\artist-album-låtar\webApi\bin\Debug\net7.0\Microsoft.Extensions.Options.dll
+C:\Users\jimmie\Documents\artist-album-låtar\webApi\bin\Debug\net7.0\Microsoft.Extensions.Primitives.dll
