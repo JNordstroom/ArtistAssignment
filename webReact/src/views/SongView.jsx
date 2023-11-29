@@ -28,9 +28,9 @@ export default function SongView() {
         <Row xs={1} md={2} lg={3} xl={4} className="g-4 justify-content-center">
           {songs.map((song) => (
             <Col key={song.id} className="d-flex">
-              <Card style={{ width: '18rem' }} className="mx-auto ">
+              <Card style={{ width: '18rem', backgroundColor: "#19141c", boxShadow: '2.5px 6px rgba(0, 0, 0.0, 0.1)', border: '7px outset #f8f8ff '}} className="mx-auto ">
                 <Card.Body
-                  className="d-flex flex-column align-items-center justify-content-center "
+                  className="d-flex flex-column align-items-center justify-content-center"
                 >
                   <Card.Title>{song.namn}</Card.Title>
                   <Card.Subtitle className="mb-2 text-muted">Album nummer:</Card.Subtitle>
@@ -41,7 +41,7 @@ export default function SongView() {
           ))}
           <Col key="new-song" className="d-flex">
           <Link to={`/AddNewSongView/${id}`} style={{ textDecoration: 'none', width: '100%' }}>
-            <Card style={{ width: '18rem', height: '6.7rem' }} className="mx-auto">
+            <Card style={{ width: '18rem', height: '7.5rem', backgroundColor: "#19141c", boxShadow: '2.5px 6px rgba(0, 0, 0.0, 0.1)', border: '7px outset #f8f8ff ' }} className="mx-auto">
               <Card.Body className="d-flex flex-column align-items-center justify-content-center">
                 <Card.Title>Lägg till ny låt</Card.Title>
               </Card.Body>

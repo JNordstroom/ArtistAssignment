@@ -36,7 +36,7 @@ export default function AlbumView() {
         {albums.map((album) => (
           <Col key={album.id} className="d-flex">
             <Link to={`/Songs/${album.id}`} style={{ textDecoration: 'none', width: '100%' }}>
-              <Card style={{ width: '18rem' }} className="mx-auto">
+              <Card style={{ width: '18rem', backgroundColor: "#19141c", boxShadow: '2.5px 6px rgba(0, 0, 0.0, 0.1)', border: '7px outset #f8f8ff '}} className="mx-auto">
                 <Card.Body
                   className="d-flex flex-column align-items-center justify-content-center"
                 >
@@ -53,7 +53,7 @@ export default function AlbumView() {
 
         <Col key="new-album" className="d-flex">
           <Link to={`/CreateNewAlbumView/${id}`} style={{ textDecoration: 'none', width: '100%' }}>
-            <Card style={{ width: '18rem', height: '6.7rem' }} className="mx-auto">
+            <Card style={{ width: '18rem', height: '7.5rem', backgroundColor: "#19141c", boxShadow: '2.5px 6px rgba(0, 0, 0.0, 0.1)', border: '7px outset #f8f8ff ' }} className="mx-auto">
               <Card.Body className="d-flex flex-column align-items-center justify-content-center">
                 <Card.Title>Lägg till nytt album</Card.Title>
                 
