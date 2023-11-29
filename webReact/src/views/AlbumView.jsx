@@ -34,10 +34,6 @@ export default function AlbumView() {
 
   return (
     <Container className="mt-4">
-
-
-      <Row className="g-4 justify-content-center">
-
       <h1 className="text-center mb-3">Albums</h1>
       <h2 className="text-center mb-3">{artist.artistNamn}</h2>
       <button onClick={goBack} className='mb-1 btn '>Tillbaka</button>
