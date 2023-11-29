@@ -18,7 +18,7 @@ namespace webApi.Controllers
             _context = context;
         }
 
-        [HttpGet]
+        [HttpGet("alla")]
         public async Task<IActionResult> GetAllAlbums()
         {
              var result = await _context.Album

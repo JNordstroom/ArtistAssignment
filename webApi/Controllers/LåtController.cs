@@ -20,7 +20,7 @@ namespace webApi.Controllers
             _context = context;
         }
 
-        [HttpGet]
+        [HttpGet("alla")]
         public async Task<IActionResult> GetAllSongs()
         {
             var result = await _context.Låtar
