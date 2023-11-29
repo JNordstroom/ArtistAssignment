@@ -21,11 +21,11 @@ export default function ArtistView() {
     <Container className="mt-4">
       <h1 className="text-center mb-4">Artister</h1>
 
-      <Row xs={1} md={2} lg={4} className="g-4 justify-content-start">
+      <Row className="g-4 justify-content-center ">
         {artists.map((artist) => (
           <Col key={artist.id} className="d-flex">
             <Link to={`/Album/${artist.id}`} style={{ textDecoration: 'none', width: '100%' }}>
-              <Card style={{ width: '18rem' }} className="mx-auto">
+              <Card style={{ width: '18rem', backgroundColor: "#19141c", boxShadow: '2.5px 6px rgba(0, 0, 0.0, 0.1)', border: '7px outset #f8f8ff '}} className="mx-auto">
                 <Card.Body className="d-flex flex-column align-items-center justify-content-center">
                   <Card.Title>{artist.namn}</Card.Title>
                   <Card.Subtitle className="mb-2 text-muted">Beskrivning</Card.Subtitle>
@@ -36,13 +36,11 @@ export default function ArtistView() {
           </Col>
         ))}
         
-        
         <Col key="new-artist" className="d-flex">
           <Link to="/CreateNewArtistView" style={{ textDecoration: 'none', width: '100%' }}>
-            <Card style={{ width: '18rem', height: '6.7rem' }} className="mx-auto">
+            <Card style={{ width: '18rem', height: '7.5rem', backgroundColor: "#19141c", boxShadow: '2.5px 6px rgba(0, 0, 0.0, 0.1)', border: '7px outset #f8f8ff ' }} className="mx-auto">
               <Card.Body className="d-flex flex-column align-items-center justify-content-center">
                 <Card.Title>Lägg till ny artist</Card.Title>
-                
               </Card.Body>
             </Card>
           </Link>
