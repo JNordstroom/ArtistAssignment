@@ -1,11 +1,12 @@
 import  { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { get } from '../utilsAndHooks/ApiService.jsx';
 import { Container, Row, Col, Card } from 'react-bootstrap';
 
 export default function SongView() {
     const { id } = useParams();
     const [songs, setSongs] = useState([]);
+    const navigate = useNavigate();
   
     useEffect(() => {
       const fetchSongs = async () => {
@@ -20,11 +21,15 @@ export default function SongView() {
   
       fetchSongs();
     }, [id]);
+
+    const goBack = () =>{
+      navigate(-1);
+    }
   
     return (
       <Container className="mt-4 mb-4">
         <h1 className="text-center mb-4">Låtar</h1>
-  
+        <button onClick={goBack} className='mb-1 btn '>Tillbaka</button>
         <Row xs={1} md={2} lg={3} xl={4} className="g-4 justify-content-center">
           {songs.map((song) => (
             <Col key={song.id} className="d-flex">
