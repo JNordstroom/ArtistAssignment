@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { post } from '../utilsAndHooks/ApiService';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams  } from 'react-router-dom';
 
 const CreateNewAlbumView = () => {
   const [formData, setFormData] = useState({ Namn: '', Placering: null, AlbumId: null});
@@ -43,6 +43,10 @@ const CreateNewAlbumView = () => {
     }
   };
 
+  const goBack = () => {
+    navigate(-1);
+  };
+
   return (
     <div>
       <h1>Lägg till ny låt</h1>
@@ -81,6 +85,7 @@ const CreateNewAlbumView = () => {
         <button type="submit" className="btn btn-primary">
           Lätt till låten
         </button>
+        <button onClick={goBack}>Tillbaka</button>
       </form>
     </div>
   );
