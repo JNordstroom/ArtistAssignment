@@ -25,7 +25,7 @@ export default function SongView() {
       <Container className="mt-4 mb-4">
         <h1 className="text-center mb-4">Låtar</h1>
   
-        <Row xs={1} md={2} lg={4} className="g-4 justify-content-center">
+        <Row xs={1} md={2} lg={3} xl={4} className="g-4 justify-content-center">
           {songs.map((song) => (
             <Col key={song.id} className="d-flex">
               <Card style={{ width: '18rem' }} className="mx-auto ">
