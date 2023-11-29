@@ -37,7 +37,7 @@ export default function AlbumView() {
       <h1 className="text-center mb-3">Albums</h1>
       <h2 className="text-center mb-3">{artist.artistNamn}</h2>
       <button onClick={goBack} className='mb-1 btn '>Tillbaka</button>
-      <Row xs={1} md={2} lg={4} className="g-4 justify-content-center">
+      <Row className="g-4 justify-content-center">
 
         {albums.map((album) => (
           <Col key={album.id} className="d-flex">
