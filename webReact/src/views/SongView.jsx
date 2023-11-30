@@ -27,9 +27,11 @@ export default function SongView() {
     }
   
     return (
-      <Container className="mt-4 mb-4">
-        <h1 className="text-center mb-4">Låtar</h1>
-        <button onClick={goBack} className='mb-1 btn '>Tillbaka</button>
+      <Container className="mt-4 mb-3">
+        <h1 className="text-center mb-3">Låtar</h1>
+        <button onClick={goBack} className='btn' style={{ width: '5rem', height: '2.5rem', border: "2px outset #f8f8ff", position: 'absolute', top: "1.5rem", right: "1rem" }}>
+        Tillbaka
+      </button>
         <Row xs={1} md={2} lg={3} xl={4} className="g-4 justify-content-center">
           {songs.map((song) => (
             <Col key={song.id} className="d-flex">
