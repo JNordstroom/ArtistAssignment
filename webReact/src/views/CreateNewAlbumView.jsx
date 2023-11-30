@@ -19,8 +19,6 @@ const CreateNewAlbumView = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
   
-    console.log(artistId);
-    console.log(formData);
     try {
         
       const response = await post('album/createnewalbum', {
@@ -34,7 +32,7 @@ const CreateNewAlbumView = () => {
       if (response.error) {
         console.error('Error creating new album:', response.error);
       } else {
-        alert('Album added successfully!');
+        alert('Album tillagt!');
         
         // route back to that artist albumpage
         navigate(`/Album/${artistId}`);  

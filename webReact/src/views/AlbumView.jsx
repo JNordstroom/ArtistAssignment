@@ -13,13 +13,10 @@ export default function AlbumView() {
     const fetchData = async () => {
       try {
         // Fetch artist data
-        const artistData = await get(`Album/artist/${id}`);
-        setArtist(artistData);
-
         // Fetch albums for the artist
-        const albumsData = await get(`Album/artist/${id}`);
-        setAlbums(albumsData.album);
-  
+        const data = await get(`Album/artist/${id}`);
+        setArtist(data);
+        setAlbums(data.album);
       } catch (error) {
         console.error('Error fetching data:', error);
       }

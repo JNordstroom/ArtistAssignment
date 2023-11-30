@@ -19,8 +19,6 @@ const CreateNewAlbumView = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log(albumId);
-    console.log(formData);
     try {
       const response = await post('låt/addnewsong', {
         ...formData,
