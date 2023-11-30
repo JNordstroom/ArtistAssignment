@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { post } from '../utilsAndHooks/ApiService';
 import { useNavigate, useParams } from 'react-router-dom';
+import { Container, Row, Form, Button } from 'react-bootstrap';
 
 const CreateNewAlbumView = () => {
   const [formData, setFormData] = useState({ Namn: '', Publicerad: null, ArtisterId: null});
@@ -18,8 +19,6 @@ const CreateNewAlbumView = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
   
-    console.log(artistId);
-    console.log(formData);
     try {
         
       const response = await post('album/createnewalbum', {
@@ -33,7 +32,7 @@ const CreateNewAlbumView = () => {
       if (response.error) {
         console.error('Error creating new album:', response.error);
       } else {
-        alert('Album added successfully!');
+        alert('Album tillagt!');
         
         // route back to that artist albumpage
         navigate(`/Album/${artistId}`);  
@@ -48,46 +47,42 @@ const CreateNewAlbumView = () => {
   };
 
   return (
-    <div>
-      <h1>Lägg till nytt album</h1>
-      <form onSubmit={handleSubmit}>
-        <div className="mb-3">
-          <label htmlFor="Namn" className="form-label">
-            Namn
-          </label>
-          <input
-            type="text"
-            className="form-control"
-            id="Namn"
-            name="Namn"
-            value={formData.Namn}
-            onChange={handleChange}
-            required
-          />
-        </div>
-
-        
-        <div className="mb-3">
-          <label htmlFor="Publicerad" className="form-label">
-            Publicerad
-          </label>
-          <textarea
-            className="form-control"
-            id="Publicerad"
-            name="Publicerad"
-            value={formData.Publicerad}
-            onChange={handleChange}
-            required
-          ></textarea>
-        </div>
-
-        
-        <button type="submit" className="btn btn-primary">
-          Lätt till album
-        </button>
-        <button onClick={goBack} className='mb-1 btn '>Tillbaka</button>
-      </form>
-    </div>
+    <Container className='d-flex justify-content-center align-items-center' style={{ width: "90%", maxWidth: "800px", minHeight: "100vh", fontSize: "1.2rem"}}>
+      <Row>
+      <h1 className='d-flex justify-content-center mb-4'>Lägg till nytt album</h1>
+        <Form onSubmit={handleSubmit}>
+          <Form.Group className="mb-3" controlId="Namn">
+            <Form.Label>Namn</Form.Label>
+            <Form.Control
+              type="text"
+              name="Namn"
+              value={formData.Namn}
+              onChange={handleChange}
+              required
+            />
+          </Form.Group>
+  
+          <Form.Group className="mb-3" controlId="Publicerad">
+            <Form.Label>Publicerad</Form.Label>
+            <Form.Control
+              as="textarea"
+              name="Publicerad"
+              value={formData.Publicerad}
+              onChange={handleChange}
+              required
+            />
+          </Form.Group>
+  
+          <Button type="submit" variant="primary" style={{ marginRight: '0.5rem' }}>
+            Lägg till albumet
+          </Button>
+          <Button variant="secondary" onClick={goBack}>
+            Tillbaka
+          </Button>
+        </Form>
+      </Row>
+      
+    </Container>
   );
 };
 

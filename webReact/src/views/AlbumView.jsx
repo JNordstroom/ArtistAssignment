@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { get } from '../utilsAndHooks/ApiService.jsx';
-import { Container, Row, Col, Card } from 'react-bootstrap';
+import { Container, Row, Col, Card  } from 'react-bootstrap';
 
 export default function AlbumView() {
   const { id } = useParams();
@@ -13,13 +13,10 @@ export default function AlbumView() {
     const fetchData = async () => {
       try {
         // Fetch artist data
-        const artistData = await get(`Album/artist/${id}`);
-        setArtist(artistData);
-
         // Fetch albums for the artist
-        const albumsData = await get(`Album/artist/${id}`);
-        setAlbums(albumsData.album);
-  
+        const data = await get(`Album/artist/${id}`);
+        setArtist(data);
+        setAlbums(data.album);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -35,10 +32,12 @@ export default function AlbumView() {
   return (
     <Container className="mt-4">
       <h1 className="text-center mb-3">Albums</h1>
-      <h2 className="text-center mb-3">{artist.artistNamn}</h2>
-      <button onClick={goBack} className='mb-1 btn '>Tillbaka</button>
+        <h2 className="text-center mb-3">Artist: {artist.artistNamn}</h2>
+        <button onClick={goBack} className='btn' style={{ width: '5rem', height: '2.5rem', border: "2px outset #f8f8ff", position: 'absolute', top: "1.5rem", right: "1rem" }}>
+        Tillbaka
+      </button>
       <Row className="g-4 justify-content-center">
-
+      
         {albums.map((album) => (
           <Col key={album.id} className="d-flex">
             <Link to={`/Songs/${album.id}`} style={{ textDecoration: 'none', width: '100%' }}>
