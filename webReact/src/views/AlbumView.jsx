@@ -29,10 +29,17 @@ export default function AlbumView() {
     navigate(-1);
   };
 
+  const goToArtist = () => {
+    navigate(`/`);
+  };
+
   return (
     <Container className="mt-4">
       <h1 className="text-center mb-3">Albums</h1>
         <h2 className="text-center mb-3">Artist: {artist.artistNamn}</h2>
+        <button onClick={goToArtist} className='btn' style={{ width: '5rem', height: '2.5rem', border: "2px outset #f8f8ff", position: 'absolute', top: "1.5rem", right: "6.2rem" }}>
+        Artister
+      </button>
         <button onClick={goBack} className='btn' style={{ width: '5rem', height: '2.5rem', border: "2px outset #f8f8ff", position: 'absolute', top: "1.5rem", right: "1rem" }}>
         Tillbaka
       </button>
