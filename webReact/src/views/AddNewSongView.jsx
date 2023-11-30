@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { post } from '../utilsAndHooks/ApiService';
 import { useNavigate, useParams } from 'react-router-dom';
-import { Form, Button } from 'react-bootstrap';
+import { Form, Button, Container, Row } from 'react-bootstrap';
 
 const CreateNewAlbumView = () => {
   const [formData, setFormData] = useState({ Namn: '', Placering: null, AlbumId: null });
@@ -47,40 +47,44 @@ const CreateNewAlbumView = () => {
   };
 
   return (
-    <div>
-      <h1>Lägg till ny låt</h1>
-      <Form onSubmit={handleSubmit}>
-        <Form.Group className="mb-3" controlId="Namn">
-          <Form.Label>Namn</Form.Label>
-          <Form.Control
-            type="text"
-            name="Namn"
-            value={formData.Namn}
-            onChange={handleChange}
-            required
-          />
-        </Form.Group>
-
-        <Form.Group className="mb-3" controlId="Placering">
-          <Form.Label>Placering</Form.Label>
-          <Form.Control
-            as="textarea"
-            name="Placering"
-            value={formData.Placering}
-            onChange={handleChange}
-            required
-          />
-        </Form.Group>
-
-        <Button type="submit" variant="primary" style={{ marginRight: '0.5rem' }}>
-          Lägg till låten
-        </Button>
-        <Button variant="secondary" onClick={goBack} className="mr-x">
-          Tillbaka
-        </Button>
-      </Form>
-    </div>
+    <Container className='d-flex justify-content-center align-items-center' style={{ width: "90%", maxWidth: "800px", minHeight: "100vh", fontSize: "1.2rem", padding: "20px" }}>
+      <Row>
+      <h1 className='d-flex justify-content-center mb-4'>Lägg till ny låt</h1>
+        <Form onSubmit={handleSubmit}>
+          <Form.Group className="mb-3" controlId="Namn">
+            <Form.Label>Namn</Form.Label>
+            <Form.Control
+              type="text"
+              name="Namn"
+              value={formData.Namn}
+              onChange={handleChange}
+              required
+            />
+          </Form.Group>
+  
+          <Form.Group className="mb-3" controlId="Placering">
+            <Form.Label>Placering</Form.Label>
+            <Form.Control
+              as="textarea"
+              name="Placering"
+              value={formData.Placering}
+              onChange={handleChange}
+              required
+            />
+          </Form.Group>
+  
+          <Button type="submit" variant="primary" style={{ marginRight: '0.5rem' }}>
+            Lägg till låten
+          </Button>
+          <Button variant="secondary" onClick={goBack}>
+            Tillbaka
+          </Button>
+        </Form>
+      </Row>
+      
+    </Container>
   );
+  
 };
 
 export default CreateNewAlbumView;
