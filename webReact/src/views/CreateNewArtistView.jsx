@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { post } from '../utilsAndHooks/ApiService'; 
 import { useNavigate } from 'react-router-dom';
+import { Container, Row, Button, Form } from 'react-bootstrap';
 
 const CreateNewArtistView = () => {
-  const [formData, setFormData] = useState({ artistName: '', artistDescription: '' });
-  const [error, setError] = useState(null);
+  const [formData, setFormData] = useState({ artistNamn: '', artistBeskrivning: '' });
   const navigate = useNavigate();  
 
   const handleChange = (e) => {
@@ -20,15 +20,13 @@ const CreateNewArtistView = () => {
 
     try {
       const response = await post('artist/createnewartist', {
-        Namn: formData.artistName,
-        Beskrivning: formData.artistDescription
+        Namn: formData.artistNamn,
+        Beskrivning: formData.artistBeskrivning
       });
 
       if (response.error) {
-        setError(response.error);
+        console.log("Fel vid försök att lägga till artisten:", response.error);
       } else {
-        setError(null);
-        // popup to show that the artist is added
         alert('Artist tillagd!');
         // Redirect to the artist page
         navigate('/'); 
@@ -43,39 +41,42 @@ const CreateNewArtistView = () => {
   };
 
   return (
-    <div>
-      <h1>Lägg till ny artist</h1>
-      <form onSubmit={handleSubmit}>
-        <div className="mb-3">
-          <label htmlFor="artistName" className="form-label">Artistens namn</label>
-          <input
+    <Container className='d-flex justify-content-center align-items-center' style={{ width: "90%", maxWidth: "800px", minHeight: "100vh", fontSize: "1.2rem" }}>
+    <Row>
+    <h1 className='d-flex justify-content-center mb-4'>Lägg till ny artist</h1>
+      <Form onSubmit={handleSubmit}>
+        <Form.Group className="mb-3" controlId="artistNamn">
+          <Form.Label>Namn</Form.Label>
+          <Form.Control
             type="text"
-            className="form-control"
-            id="artistName"
-            name="artistName"
-            value={formData.artistName}
+            name="artistNamn"
+            value={formData.artistNamn}
             onChange={handleChange}
             required
           />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="artistDescription" className="form-label">Artistens beskrivning</label>
-          <textarea
-            className="form-control"
-            id="artistDescription"
-            name="artistDescription"
-            value={formData.artistDescription}
+        </Form.Group>
+
+        <Form.Group className="mb-3" controlId="artistBeskrivning">
+          <Form.Label>Beskrivning</Form.Label>
+          <Form.Control
+            as="textarea"
+            name="artistBeskrivning"
+            value={formData.artistBeskrivning}
             onChange={handleChange}
             required
-          ></textarea>
-        </div>
-        <button type="submit" className="btn btn-primary">Lägg till</button>
-        <button onClick={goBack} className='mb-1 btn '>Tillbaka</button>
-      </form>
+          />
+        </Form.Group>
 
-      
-      {error && <div className="alert alert-danger">{error}</div>}
-    </div>
+        <Button type="submit" variant="primary" style={{ marginRight: '0.5rem' }}>
+          Lägg till artisten
+        </Button>
+        <Button variant="secondary" onClick={goBack}>
+          Tillbaka
+        </Button>
+      </Form>
+    </Row>
+    
+  </Container>
   );
 };
 

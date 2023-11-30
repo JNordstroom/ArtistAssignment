@@ -47,7 +47,7 @@ const CreateNewAlbumView = () => {
   };
 
   return (
-    <Container className='d-flex justify-content-center align-items-center' style={{ width: "90%", maxWidth: "800px", minHeight: "100vh", fontSize: "1.2rem", padding: "20px" }}>
+    <Container className='d-flex justify-content-center align-items-center' style={{ width: "90%", maxWidth: "800px", minHeight: "100vh", fontSize: "1.2rem"}}>
       <Row>
       <h1 className='d-flex justify-content-center mb-4'>Lägg till ny låt</h1>
         <Form onSubmit={handleSubmit}>
